@@ -6,10 +6,10 @@ import streamlit_analytics
 
 df = pd.read_csv('ipaivocab.csv')
 df=df.dropna()
-
-st.title("Mesa Grande Ipai Dictionary")
 st.image("ipai.wiki.png",width=400)
-st.subheader("Vocab sourced from The Global Lexicostatistical Database, native-languages.org, A Grammar of Diegueno: the Mesa Grande Dialect, Dictionary of Mesa Grande Diegueno, and learniipayaa.weebly.com.")
+st.title("Mesa Grande Ipai Dictionary")
+st.write("Vocab sourced from The Global Lexicostatistical Database, native-languages.org, A Grammar of Diegueno: the Mesa Grande Dialect, Dictionary of Mesa Grande Diegueno, and learniipayaa.weebly.com.")
+st.write("Currenly 1393 words and phrases indexed.")
 st.write("Pronunciation Guide: https://link.andrewgao.dev/speakipai")
 streamlit_analytics.start_tracking()
 
