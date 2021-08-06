@@ -6,19 +6,21 @@ import streamlit_analytics
 
 df = pd.read_csv('ipaivocab.csv')
 df=df.dropna()
-st.title("Mesa Grande Ipai Dictionary")
-st.write("Vocab sourced from The Global Lexicostatistical Database, native-languages.org, A Grammar of Diegueno: the Mesa Grande Dialect, Dictionary of Mesa Grande Diegueno, and learniipayaa.weebly.com.")
-st.write("Currenly 1393 words and phrases indexed.")
-st.write("Pronunciation Guide: https://link.andrewgao.dev/speakipai")
+st.title("Yuman Dictionary")
+st.subheader("URL: ipai.wiki")
+st.write("Free online dictionary for Yuman languages, mostly Mesa Grande Ipai.")
+st.write("Currenly 1393 words and phrases indexed. Limited entries for Mojave, Cocopa, Yavapai, and Jamul Tiipay. Click here if you'd like to contribute words to the dictionary: https://forms.gle/ZxQpzD1eMXsC7n2Z6")
 streamlit_analytics.start_tracking()
 
-lang = st.radio("Which language would you like to search with?",['English','Ipai'])
-if(lang=='English'):
-    query1 = st.text_input('Search English word')
-    if len(query1) != 0:
-        st.table(df[df['english'].str.contains(query1)])
-elif(lang=='Ipai'):
-    query2 = st.text_input('Search Ipai word')
-    if len(query2) != 0:
-        st.table(df[df['ipai'].str.contains(query2)])
+st.write("Demo: Keep the default settings and try searching 'fish'. Hit Enter key to search. You may need to scroll down the page.")
+initlang = st.radio("Which language would you like to search from?",['English','Mesa Grande Ipai','Mojave','Cocopa','Yavapai','Jamul Tiipay'])
+targlang = st.radio("Which language would you like to search for?",['Mesa Grande Ipai','Mojave','Cocopa','Yavapai','Jamul Tiipay','English'])
+
+query=st.text_input("Enter word")
+if len(query) != 0:
+    st.write("Missing word? Submit an entry here: https://forms.gle/ZxQpzD1eMXsC7n2Z6")
+    st.table(df[df[str(initlang)].str.contains(query)][[str(initlang),str(targlang)]])
+st.write("Vocab sourced from The Global Lexicostatistical Database, native-languages.org, A Grammar of Diegueno: the Mesa Grande Dialect, Dictionary of Mesa Grande Diegueno, and learniipayaa.weebly.com.")
+st.write("Pronunciation Guide (all credit to learniipayaa.weebly.com): https://link.andrewgao.dev/speakipai")
+
 streamlit_analytics.stop_tracking()
